@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Earth Defence</title>
+  <meta name="description" content="Design a swarm of asteroid penetrators, smash incoming asteroids apart and see which pieces burn up in Earth's atmosphere. A physics game for young space scientists.">
+  <meta name="theme-color" content="#03050e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Earth Defence">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=11">
+</head>
+<body>
+  <div id="app">
+    <canvas id="game" aria-label="Game view"></canvas>
+
+    <header id="topbar" class="hidden">
+      <button id="btn-menu" class="icon-btn" title="Menu">☰</button>
+      <div id="mission-title"><span id="mission-num"></span><span id="mission-name"></span></div>
+      <div id="asteroid-chip"></div>
+      <div class="grow"></div>
+      <div id="run-stats" class="hidden"></div>
+      <button id="btn-help" class="icon-btn" title="How to play">?</button>
+      <button id="btn-book" class="icon-btn" title="Science logbook">📖</button>
+      <button id="btn-sound" class="icon-btn" title="Sound on/off">🔊</button>
+      <button id="btn-full" class="icon-btn hidden" title="Full screen">⛶</button>
+    </header>
+
+    <footer id="palette" class="bar hidden">
+      <button class="pen-btn kin" data-kind="kinetic" title="Kinetic impactor – tap, or drag into the green zone (key 1)">
+        <span class="pb-ico">🚀</span><span class="pb-txt"><b>Kinetic Impactor</b><span class="count"></span></span><span class="pb-n"></span>
+      </button>
+      <button class="pen-btn nuk" data-kind="nuke" title="Nuclear penetrator – tap, or drag into the green zone (key 2)">
+        <span class="pb-ico">☢️</span><span class="pb-txt"><b>Nuclear Penetrator</b><span class="count"></span></span><span class="pb-n"></span>
+      </button>
+      <button id="btn-tl" class="dock-btn hidden" title="Mission computer: see where everything will be">🔮</button>
+      <div id="dock"></div>
+      <div class="grow"></div>
+      <button id="btn-clear" class="btn small hidden" title="Remove all penetrators">🧹</button>
+      <button id="btn-launch" class="launch">🔥 LAUNCH!</button>
+    </footer>
+
+    <div id="timeline" class="hidden" title="Mission computer: see the future!">
+      <span class="tl-ico" aria-hidden="true">🔮</span>
+      <button id="tl-play" title="Play the prediction" aria-label="Play">▶</button>
+      <input id="tl-slider" type="range" min="0" max="8" step="0.02" value="0" aria-label="Preview time">
+      <span id="tl-time">Now</span>
+      <span id="tl-status"></span>
+      <button id="tl-close" title="Hide the mission computer" aria-label="Hide">✕</button>
+    </div>
+
+    <footer id="runbar" class="bar hidden">
+      <div id="speed-btns" title="Time speed">
+        <button data-speed="0.5">🐢 ½×</button>
+        <button data-speed="1">1×</button>
+        <button data-speed="2">2×</button>
+        <button data-speed="4">⏩ 4×</button>
+      </div>
+      <label class="toggle" title="Show lines for dangerous fragments"><input type="checkbox" id="opt-track" checked> Danger lines</label>
+      <div class="grow"></div>
+      <div id="damage-meter"><span>Earth damage</span><div class="bar-out"><div id="damage-fill" class="fill ok"></div></div><b id="damage-text">Safe</b></div>
+      <button id="btn-abort" class="btn small" title="Stop and change your plan">↺ Re-plan</button>
+    </footer>
+
+    <button id="btn-detonate" class="hidden"><span class="det-ico">☢️</span><span class="det-label">DETONATE</span><small>Space</small></button>
+
+    <div id="fuse-pop" class="hidden" role="menu"></div>
+    <div id="rotate-hint">🔄 Turn your device sideways for a bigger view</div>
+    <div id="hint" class="hidden"></div>
+    <div id="toasts"></div>
+
+    <div id="overlay" class="hidden"><div id="modal" class="modal"></div></div>
+  </div>
+
+  <script src="js/util.js?v=11"></script>
+  <script src="js/data.js?v=11"></script>
+  <script src="js/physics.js?v=11"></script>
+  <script src="js/fx.js?v=11"></script>
+  <script src="js/audio.js?v=11"></script>
+  <script src="js/render.js?v=11"></script>
+  <script src="js/game.js?v=11"></script>
+</body>
+</html>
